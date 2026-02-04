@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Índice de la tienda</title>
+</head>
+<body>
+    <h1>Bienvenidos a la maravillosa tienda</h1>
+    <h2>Explora los carritos existentes:</h2>
+    <table>
+        <tr>
+            <th>ID Carrito</th>
+            <th>ID Artículo</th>
+            <th>Descripción</th>
+            <th>Unidades</th>
+            <th>Precio Final €</th>
+            <th>Acciones</th>
+        </tr>
+        <tr th:each="carrito : ${carritos}">
+            <td th:text="${carrito.idCarrito}">1</td>
+            <td th:text="${carrito.idArticulo}">101</td>
+            <td th:text="${carrito.descripcion}">Prueba</td>
+            <td th:text="${carrito.unidades}">5</td>
+            <td th:text="${carrito.precioFinal}">99.99</td>
+            <td><button th:onclick="'eliminarCarrito(' + ${carrito.idCarrito} + ')'">Eliminar</button></td>
+        </tr>
+    </table>
+
+    <h2>Añadir un nuevo carrito:</h2>
+    <input type="number" id="idCarrito" placeholder="ID Carrito">
+    <input type="number" id="idArticulo" placeholder="ID Artículo">
+    <input type="text" id="descripcion" placeholder="Descripción">
+    <input type="number" id="unidades" placeholder="Unidades">
+    <button id="añadirButton">Añadir Carrito</button>
+
+    <h2>Modificar un carrito:</h2>
+    <input type="number" id="modificarIdCarrito" placeholder="ID Carrito">
+    <input type="number" id="modificarIdArticulo" placeholder="ID Artículo">
+    <input type="text" id="modificarDescripcion" placeholder="Nueva Descripción">
+    <input type="number" id="modificarUnidades" placeholder="Nuevas Unidades">
+    <button id="modificarButton">Modificar Carrito</button>
+
+    <script th:src="@{/js/index.js}"></script>
+</body>
+</html>
