@@ -67,7 +67,7 @@ Y después de darle click, se actualizará la página mostrando en el listado qu
 
 ### Clases Principales
 
-- **`Pract2Application`**: Clase principal que inicia la aplicación Spring Boot
+- **`practcarritosApplication`**: Clase principal que inicia la aplicación Spring Boot
 - **`Carrito`**: Record que representa el modelo de datos con validaciones
 - **`CarritoActualizacion`**: DTO para actualizaciones parciales (campos opcionales)
 - **`ControladorREST`**: Controlador REST que maneja las operaciones CRUD

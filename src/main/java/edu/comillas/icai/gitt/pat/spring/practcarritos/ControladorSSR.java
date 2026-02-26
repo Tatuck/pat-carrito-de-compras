@@ -1,4 +1,4 @@
-package edu.comillas.icai.gitt.pat.spring.pract2;
+package edu.comillas.icai.gitt.pat.spring.practcarritos;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

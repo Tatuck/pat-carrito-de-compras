@@ -1,4 +1,4 @@
-package edu.comillas.icai.gitt.pat.spring.pract2;
+package edu.comillas.icai.gitt.pat.spring.practcarritos;
 
 public class CarritoActualizacion {
     private Integer idArticulo;

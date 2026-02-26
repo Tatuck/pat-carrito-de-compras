@@ -1,10 +1,10 @@
-package edu.comillas.icai.gitt.pat.spring.pract2;
+package edu.comillas.icai.gitt.pat.spring.practcarritos;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Pract2ApplicationTests {
+class PractCarritosApplicationTests {
 
 	@Test
 	void contextLoads() {

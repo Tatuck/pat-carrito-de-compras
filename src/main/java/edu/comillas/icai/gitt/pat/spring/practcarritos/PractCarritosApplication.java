@@ -1,13 +1,13 @@
-package edu.comillas.icai.gitt.pat.spring.pract2;
+package edu.comillas.icai.gitt.pat.spring.practcarritos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Pract2Application {
+public class PractCarritosApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Pract2Application.class, args);
+		SpringApplication.run(PractCarritosApplication.class, args);
 	}
 
 }
