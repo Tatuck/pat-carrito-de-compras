@@ -1,70 +1,69 @@
 package edu.comillas.icai.gitt.pat.spring.practcarritos;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import edu.comillas.icai.gitt.pat.spring.practcarritos.entity.Carrito;
+import edu.comillas.icai.gitt.pat.spring.practcarritos.entity.LineaCarrito;
+import edu.comillas.icai.gitt.pat.spring.practcarritos.servicio.ServicioCarrito;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class ControladorREST {
-    private static final HashMap<Integer, Carrito> carritos = new HashMap<>();
 
-    public static HashMap<Integer, Carrito> getCarritos() {
-        return carritos;
-    }
+    @Autowired
+    private ServicioCarrito servicioCarrito;
 
-    
-    @PostMapping("/crear")
+    // ========== Endpoints de Carrito ==========
+
+    @PostMapping("/carritos")
     public Carrito crearCarrito(@Valid @RequestBody Carrito carrito) {
-        if (carritos.containsKey(carrito.idCarrito())) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Carrito con ID " + carrito.idCarrito() + " ya existe.");
-        }
-        Carrito nuevoCarrito = new Carrito(carrito.idCarrito(), carrito.idArticulo(), carrito.descripcion(), carrito.unidades());
-        carritos.put(carrito.idCarrito(), nuevoCarrito);
-        return nuevoCarrito;
+        return servicioCarrito.crearCarrito(carrito);
     }
 
-    @PutMapping("/modificar/{idCarrito}")
-    public Carrito modificarCarrito(@PathVariable int idCarrito, @RequestBody CarritoActualizacion actualizacion) {
-        Carrito carritoExistente = carritos.get(idCarrito);
-        if (carritoExistente == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Carrito con ID " + idCarrito + " no encontrado.");
-        }
-        
-        // Solo actualizar los campos que no sean null
-        int nuevoIdArticulo = actualizacion.getIdArticulo() != null ? actualizacion.getIdArticulo() : carritoExistente.idArticulo();
-        String nuevaDescripcion = actualizacion.getDescripcion() != null ? actualizacion.getDescripcion() : carritoExistente.descripcion();
-        int nuevasUnidades = actualizacion.getUnidades() != null ? actualizacion.getUnidades() : carritoExistente.unidades();
-        
-        Carrito carritoModificado = new Carrito(idCarrito, nuevoIdArticulo, nuevaDescripcion, nuevasUnidades);
-        carritos.put(idCarrito, carritoModificado);
-        return carritoModificado;
+    @GetMapping("/carritos")
+    public List<Carrito> listarCarritos() {
+        return servicioCarrito.listarCarritos();
     }
 
-    @GetMapping("/consultar/{idCarrito}")
-    public Carrito consultarCarrito(@PathVariable int idCarrito) {
-        Carrito carrito = carritos.get(idCarrito);
-        if (carrito == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Carrito con ID " + idCarrito + " no encontrado.");
-        }
-        return carrito;
+    @GetMapping("/carritos/{idCarrito}")
+    public Carrito consultarCarrito(@PathVariable Long idCarrito) {
+        return servicioCarrito.consultarCarrito(idCarrito);
     }
 
-    @DeleteMapping("/eliminar/{idCarrito}")
-    public String eliminarCarrito(@PathVariable int idCarrito) {
-        if (carritos.remove(idCarrito) == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Carrito con ID " + idCarrito + " no encontrado.");
-        }
+    @PutMapping("/carritos/{idCarrito}")
+    public Carrito modificarCarrito(@PathVariable Long idCarrito, @RequestBody Carrito datosActualizados) {
+        return servicioCarrito.modificarCarrito(idCarrito, datosActualizados);
+    }
+
+    @DeleteMapping("/carritos/{idCarrito}")
+    public String eliminarCarrito(@PathVariable Long idCarrito) {
+        servicioCarrito.eliminarCarrito(idCarrito);
         return "Carrito con ID " + idCarrito + " eliminado exitosamente.";
+    }
+
+    // ========== Endpoints de Línea de Carrito ==========
+
+    @PostMapping("/carritos/{idCarrito}/lineas")
+    public LineaCarrito añadirLinea(@PathVariable Long idCarrito, @Valid @RequestBody LineaCarrito linea) {
+        return servicioCarrito.añadirLinea(idCarrito, linea);
+    }
+
+    @GetMapping("/carritos/{idCarrito}/lineas")
+    public List<LineaCarrito> consultarLineas(@PathVariable Long idCarrito) {
+        return servicioCarrito.consultarLineas(idCarrito);
+    }
+
+    @PutMapping("/lineas/{idLineaCarrito}")
+    public LineaCarrito modificarLinea(@PathVariable Long idLineaCarrito, @RequestBody LineaCarrito datosActualizados) {
+        return servicioCarrito.modificarLinea(idLineaCarrito, datosActualizados);
+    }
+
+    @DeleteMapping("/lineas/{idLineaCarrito}")
+    public String eliminarLinea(@PathVariable Long idLineaCarrito) {
+        servicioCarrito.eliminarLinea(idLineaCarrito);
+        return "Línea con ID " + idLineaCarrito + " eliminada exitosamente.";
     }
 }
