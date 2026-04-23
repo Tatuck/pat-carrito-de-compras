@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etiopía Yirgacheffe | Plata's Coffee</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">PLATA'S COFFEE</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="productos.html">Tienda</a></li>
+                    <li><a href="carrito.html">Carrito</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="detalle-container animate-on-scroll">
+            <div class="detalle-imagen">
+                <img src="./images/product-1.png" alt="Etiopía Yirgacheffe">
+            </div>
+            <div class="detalle-info">
+                <h1>Etiopía Yirgacheffe</h1>
+                <p class="precio">18.50€</p>
+                <p class="descripcion">
+                    Este café proviene de la región de Yirgacheffe, Yo tampoco sabía que existía esta región hasta que he decidido hacer esta página web, cada día se aprende algo nuevo. Por lo que te recomiendo comprarlo para ver si te sorprende el sabor tanto como a mi el nombre.
+                </p>
+
+                <!-- Esto se debería cambiar digo yo dinámicamente -->
+                <h3>Ficha Técnica</h3>
+                <table>
+                    <tr>
+                        <th>Origen</th>
+                        <td>Etiopía, Región de Yirgacheffe</td>
+                    </tr>
+                    <tr>
+                        <th>Altitud</th>
+                        <td>1,900 - 2,100 msnm</td>
+                    </tr>
+                    <tr>
+                        <th>Proceso</th>
+                        <td>Lavado</td>
+                    </tr>
+                    <tr>
+                        <th>Tueste</th>
+                        <td>Medio-Ligero</td>
+                    </tr>
+                </table>
+
+                <form action="carrito.html" method="GET">
+                    <input type="hidden" name="producto" value="Etiopía Yirgacheffe">
+                    <div class="form-group">
+                        <label for="molienda">Tipo de Molienda</label>
+                        <select id="molienda" name="molienda" required>
+                            <option value="grano">En Grano</option>
+                            <option value="espresso">Espresso</option>
+                            <option value="filtro">Filtro / V60</option>
+                            <option value="prensa">Prensa Francesa</option>
+                            <option value="italiana">Moka / Italiana</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad (bolsas de 250g)</label>
+                        <input type="number" id="cantidad" name="cantidad" value="1" min="1" max="10" required>
+                    </div>
+                    <button type="submit" class="btn">Añadir al Carrito</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>Hecho con ❤️ por <a href="https://github.com/Tatuck">Tatuck</a></p>
+        </div>
+    </footer>
+</body>
+</html>
