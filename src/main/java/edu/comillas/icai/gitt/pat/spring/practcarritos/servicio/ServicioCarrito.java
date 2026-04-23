@@ -75,6 +75,16 @@ public class ServicioCarrito {
         logger.info("ServicioCarrito: Carrito con ID " + idCarrito + " eliminado.");
     }
 
+    // Busca un carrito por email de usuario
+    public Carrito buscarPorEmail(String email) {
+        logger.info("ServicioCarrito: Buscando carrito para email: " + email);
+        Carrito carrito = repoCarrito.findFirstByEmailUsuario(email);
+        if (carrito == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No hay carrito para el email: " + email);
+        }
+        return carrito;
+    }
+
     // ========== Operaciones sobre Líneas de Carrito
 
     // Añade una línea de artículo a un carrito existente

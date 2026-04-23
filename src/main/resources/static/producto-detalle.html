@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etiopía Yirgacheffe | Plata's Coffee</title>
+    <title>Producto | Plata's Coffee</title>
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -17,44 +17,29 @@
                     <li><a href="carrito.html">Carrito</a></li>
                 </ul>
             </nav>
+            <button id="btn-login" class="btn" style="padding:8px 18px;font-size:.85rem;">Login</button>
         </div>
     </header>
 
     <main class="container">
         <div class="detalle-container animate-on-scroll">
             <div class="detalle-imagen">
-                <img src="./images/product-1.png" alt="Etiopía Yirgacheffe">
+                <img id="prod-imagen" src="" alt="">
             </div>
             <div class="detalle-info">
-                <h1>Etiopía Yirgacheffe</h1>
-                <p class="precio">18.50€</p>
-                <p class="descripcion">
-                    Este café proviene de la región de Yirgacheffe, Yo tampoco sabía que existía esta región hasta que he decidido hacer esta página web, cada día se aprende algo nuevo. Por lo que te recomiendo comprarlo para ver si te sorprende el sabor tanto como a mi el nombre.
-                </p>
+                <h1 id="prod-nombre"></h1>
+                <p id="prod-precio" class="precio"></p>
+                <p id="prod-descripcion" class="descripcion"></p>
 
-                <!-- Esto se debería cambiar digo yo dinámicamente -->
                 <h3>Ficha Técnica</h3>
                 <table>
-                    <tr>
-                        <th>Origen</th>
-                        <td>Etiopía, Región de Yirgacheffe</td>
-                    </tr>
-                    <tr>
-                        <th>Altitud</th>
-                        <td>1,900 - 2,100 msnm</td>
-                    </tr>
-                    <tr>
-                        <th>Proceso</th>
-                        <td>Lavado</td>
-                    </tr>
-                    <tr>
-                        <th>Tueste</th>
-                        <td>Medio-Ligero</td>
-                    </tr>
+                    <tr><th>Origen</th>  <td id="prod-origen"></td></tr>
+                    <tr><th>Altitud</th> <td id="prod-altitud"></td></tr>
+                    <tr><th>Proceso</th> <td id="prod-proceso"></td></tr>
+                    <tr><th>Tueste</th>  <td id="prod-tueste"></td></tr>
                 </table>
 
-                <form action="carrito.html" method="GET">
-                    <input type="hidden" name="producto" value="Etiopía Yirgacheffe">
+                <form id="form-carrito">
                     <div class="form-group">
                         <label for="molienda">Tipo de Molienda</label>
                         <select id="molienda" name="molienda" required>
@@ -80,5 +65,8 @@
             <p>Hecho con ❤️ por <a href="https://github.com/Tatuck">Tatuck</a></p>
         </div>
     </footer>
+
+    <script src="./js/catalogo.js"></script>
+    <script src="./js/producto-detalle.js"></script>
 </body>
 </html>

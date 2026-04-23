@@ -33,6 +33,11 @@ public class ControladorREST {
         return servicioCarrito.consultarCarrito(idCarrito);
     }
 
+    @GetMapping("/carritos/buscar")
+    public Carrito buscarCarritoPorEmail(@RequestParam String email) {
+        return servicioCarrito.buscarPorEmail(email);
+    }
+
     @PutMapping("/carritos/{idCarrito}")
     public Carrito modificarCarrito(@PathVariable Long idCarrito, @RequestBody Carrito datosActualizados) {
         return servicioCarrito.modificarCarrito(idCarrito, datosActualizados);
